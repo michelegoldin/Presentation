@@ -1,0 +1,95 @@
+---
+title: "Article Presentation"
+subtitle: "Data Science for Linguistics"
+author: "Michele Goldin"
+date: "3/30/2018"
+output:
+  xaringan::moon_reader:
+    lib_dir: libs
+    nature:
+      highlightStyle: github
+      highlightLines: true
+      countIncrementalSlides: false
+---
+
+# Article Summary
+
+Children’s Grammar of Null Subjects: Evidence from Comprehension
+
+Orfitelli & Hyams (2012)
+
+The null subject (NS) stage in early childhood is one of the best-described hallmarks of first language development. In this study, the authors carried out an interpretation task and a production task to test children’s knowledge of and use of NS declarative and imperative sentences. They sought to answer the following main research question:
+
+Do children have a fundamentally different grammar from adults that allows them to produce and interpret NS sentences as grammatical declarative sentences, or are there production limitations that cause children to produce NS sentences, even though their grammar rejects them? 
+
+---
+
+#Explanation of Analysis - Part 1
+
+TVJ
+
+There were 3 groups of children divided by age (2;6-3 / 3-3;6 / 3;6-4) who participated in a truth-value judgment (TVJ) experiment in which they viewed a story then listened to a comment made by a puppet. They were then asked to decide whether the puppet’s comment matched the scenario in the story or not. Answers were coded binomially as ‘adult-like interpretation’ (or correct) and ‘non-adult-like interpretation’ (incorrect)
+
+They conducted a logistic regression with accuracy as a binomial dependent variable, age group as the fixed effect, and subject as a random effect. In the footnotes, the authors comment that they ran a larger model identical to the previous one excepting the inclusion of item as an additional random effect. This was then compared with the previous one using R’s ANOVA function. The model that excluded item as a factor did not significantly alter the fit, showing that there was no effect of item. Alpha was set at .05
+
+Across all three groups, an increase in age was associated with a significant increase in adult-like performance.
+
+---
+
+#Explanation of Analysis - Part 2
+
+Spontaneous Production
+
+To test the prediction that children who assign a non-adult-like interpretation to NS sentences should also produce NS sentences as a result of a nonadult grammar, the researchers also made a 10-minute audio recording of each child who participated in the TVJ task. The sessions were coded for obligatory subject clauses (OSCs), defined as clauses in which a native English-speaking adult would require an overt subject.
+
+To assess the relationship between NS comprehension, NS production, and age, they constructed an uncrossed logistic mixed-effects model in R. As before, the binomial dependent variable was whether or not a comprehension response was adult-like. The fixed effects were each child’s exact age at testing and his or her score on the production task (percentage of NS utterances produced). Random coefficients were included for subject and item.
+
+When controlling for age, the model found that NS production is a highly significant predictor of NS comprehension (p < .005); therefore, a decrease in NS production coincides with a decrease in declarative interpretations of NS sentences. 
+
+---
+
+#Why did they do it?
+
+TVJ
+
+A logistic regression was chosen because the dependent variable was categorical. The dependent variable was the children’s responses to the stimuli and these were coded as either adult-like (correct) or non-adult-like (incorrect). The model is mixed because it includes a fixed effect (age group) and a random effect (subject), which I think was included in order to model variation through variance. Each participant is a random variable because they are selected from the larger population to which one wants to generalize, in this case children ages 2;6 to 4.
+
+The nested model comparison was carried out to ensure that item was not a necessary factor to include in their final model.
+
+---
+
+#Why did they do it?
+
+Spontaneous Production
+
+Again, the authors constructed a logistic mixed-effects model because the dependent variable was categorical (whether or not response was adult-like). The fixed effects were continous (exact age and NS production task score). The random effects were subject and item as before.
+
+In the footnotes, the authors comment that the same model was run with a crossed fixed-effects structure to investigate possible interaction effects between age and NS production, but no significant interaction was found. However, the crossed model was found to be significantly worse than the uncrossed one, providing no improvement to explanatory value, but significantly increasing complexity (BIC 238.6 for the crossed model as compared with BIC 233.6 for the uncrossed model). For this reason, they discarded the crossed model in favor of the simpler uncrossed model. 
+
+I believe that both the age and NS production variables were controlled for in separate models because of the possibility that the variables were correlated (multicollinearity). By controlling for each variable separately, the authors were able to determine the true effect of each predictor on NS comprehension (which was the dependent variable).
+
+---
+
+#Appropriateness & Novelty of Analysis
+
+I think that analyzing the data using a logistic regression model was the best choice based on the categorical nature of the dependent variable in both Part 1 and Part 2. However, in Part 2 the authors were looking for a correlation between two variables (the results from the TVJ and the results from Spontaneous Production). They did not provide an r coefficient and instead created a mixed-effects model in which one of these variables became the dependent variable (TVJ responses) and the other became the predictor (NS production). Perhaps there are other ways of looking at correlation.
+
+The crossed versus uncrossed models presented in Part 2 were something I have not seen before. They discuss including subject and item as random coefficients but then do not discuss how these variables affect the outcomes or what role they play as predictors.
+
+---
+
+#Presentation of Results
+
+I believe the authors did a clear job of explaining, presenting and interpreting the findings by using tables and graphs to illustrate their results.
+
+In Part 1, they include 2 bar graphs to show the children's responses to the TVJ by age group, as well as 2 tables and some example responses from the participants. The bar graphs illustrate the findings from their model, that adult-like responses to the TVJ increase with age.
+
+In Part 2, they include a scatterplot showing percentage of null subjects produced in the Spontaneous Production task by age which clearly demonstrates that NS production decreases as age increases.
+
+However, they do not provide any graphs to illustrate the relationship between NS production, comprehension and age which is the main goal of the analysis in Part 2. I feel this is missing and would have added to a better understanding of this section.
+
+---
+
+#My take on the stats in this study
+
+I liked the simplicity and straightforwardness of the analysis in Part 1, but did not like the sense of overcomplication created by the crossed versus uncrossed models in Part 2. I wish that a graph illustrating the results of Part 2 would have been included and I would have liked to know the role that the random coefficients played in the models in both Part 1 and Part 2. However, overall, I felt this was a good analysis presented in a clear way and felt proud of myself for understanding it!
